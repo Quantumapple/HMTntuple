@@ -86,6 +86,48 @@ process.cscTriggerPrimitiveDigis.CSCWireDigiProducer = "muonCSCDigis:MuonCSCWire
 process.cscTriggerPrimitiveDigis.commonParam.runME11ILT = False
 process.cscTriggerPrimitiveDigis.commonParam.runME21ILT = False
 
+process.cscTriggerPrimitiveDigis.showerParam.cathodeShower.showerThresholds = cms.vuint32(
+        # ME1/1
+        12, 12, 12,
+        # ME1/2
+        10000, 10000, 10000,
+        # ME1/3
+        10000, 10000, 10000,
+        # ME2/1
+        12, 12, 12,
+        # ME2/2
+        10000, 10000, 10000,
+        # ME3/1
+        12, 12, 12,
+        # ME3/2
+        10000, 10000, 10000,
+        # ME4/1
+        12, 12, 12,
+        # ME4/2
+        10000, 10000, 10000,
+)
+
+process.cscTriggerPrimitiveDigis.showerParam.anodeShower.showerThresholds = cms.vuint32(
+        # ME1/1
+        140, 140, 140,
+        # ME1/2
+        140, 140, 140,
+        # ME1/3
+        12, 12, 12,
+        # ME2/1
+        12, 12, 18,
+        # ME2/2
+        12, 12, 15,
+        # ME3/1
+        12, 12, 18,
+        # ME3/2
+        12, 12, 15,
+        # ME4/1
+        12, 12, 18,
+        # ME4/2
+        12, 12, 14,
+)
+
 #from L1Trigger.CSCTriggerPrimitives.CSCShowerAnalyzer_cfi import cscTriggerPrimitivesAnalyzer
 from HMTntuple.CSCShowerAnalyzer.CSCShowerAnalyzer_cfi import cscTriggerPrimitivesAnalyzer
 
@@ -102,7 +144,7 @@ process.simpleCSCshowerFilter = cms.EDFilter("SimpleCSCshowerFilter",
     hltresults = cms.InputTag( "TriggerResults", "", "HLT" ),
     AsL1filter = cms.bool(False),
     AsRecofilter = cms.bool(True),
-    debug = cms.bool(True)
+    debug = cms.bool(False)
 )
 process.l1filter_step = cms.Path(process.simpleCSCshowerFilter)
 process.l1sequence = cms.Sequence(process.cscTriggerPrimitiveDigis)
